@@ -13,8 +13,19 @@ class DockerTestContainerTask extends DefaultTask {
 
 	TestScriptDelegateFactory testScriptDelegateFactory
 
+	DockerTestReporterFactory reporterFactory
+
+	String reportDirPath
+
 	@TaskAction
 	void runTests() {
-		specFiles.each {  testRunner.runSpecFile(testScriptDelegateFactory.create(containerId),it)  }
+		def reporter = reporterFactory.create(project.logger,reportDirPath)
+		specFiles.each {
+			println "sdfsd"
+			println it.absolutePath
+			reporter.logTestStart(it.absolutePath)
+			testRunner.runSpecFile(testScriptDelegateFactory.create(containerId),it)
+			reporter.logSummary()
+		}
 	}
 }
