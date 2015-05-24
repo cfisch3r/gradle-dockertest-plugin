@@ -7,4 +7,7 @@ class DockerTestReporter {
 
 	void logSummary() {
 	}
+
+	void logSuccess(String description) {
+	}
 }

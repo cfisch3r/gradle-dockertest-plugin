@@ -66,4 +66,18 @@ class DockerTestContainerTaskTest extends Specification {
 		1 * reporter.logTestStart(SPEC_FILE_PATH)
 		1 * reporter.logSummary()
 	}
+
+	def "Task should log sucess with reporter on test Success"() {
+		setup:
+		String description = "desc"
+
+		when:
+		sut.execute()
+
+		then:
+		1 * testScriptDelegate.onTestSuccess(_) >> {Closure subscriber ->
+			subscriber.call(description)
+		}
+		1* reporter.logSuccess(description)
+	}
 }
