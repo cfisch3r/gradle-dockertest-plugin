@@ -2,6 +2,12 @@ package de.colenet.gradle.dockertest
 
 class DockerTestRunner {
 
-	void runSpecFile(TestScriptDelegate delegate, File specFile) {
+	TestScriptDelegate delegate
+
+	DockerTestRunner(TestScriptDelegate delegate) {
+		this.delegate = delegate
+	}
+
+	TestResult runSpecFile(File specFile) {
 	}
 }
