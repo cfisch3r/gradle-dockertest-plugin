@@ -1,6 +1,14 @@
 package de.colenet.gradle.dockertest
 
 class DockerTestDSL {
-	void specification(String description) {
+
+	private DockerTestReporter reporter
+
+	DockerTestDSL(DockerTestReporter reporter) {
+		this.reporter = reporter
+	}
+
+	DockerTestSpecification specification(String description) {
+		return new DockerTestSpecification(reporter);
 	}
 }
