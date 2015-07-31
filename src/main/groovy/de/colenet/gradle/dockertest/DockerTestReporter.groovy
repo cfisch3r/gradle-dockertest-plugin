@@ -1,6 +1,9 @@
 package de.colenet.gradle.dockertest
 
 class DockerTestReporter {
-	void log(TestResult result) {
+	void logSuccess(String specificationTitle) {
+	}
+
+	void logFailure(String specificationTitle, Throwable e) {
 	}
 }
